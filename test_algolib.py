@@ -12,7 +12,7 @@ import numpy as np
 
 class TestAlgoLib(unittest.TestCase):
    
-    
+    #Test Monte Carlo Geometric Brownian Motion
     def test_monte_carlo_gbm(self):
         s0 = 100
         sigma = 0.18
@@ -23,6 +23,17 @@ class TestAlgoLib(unittest.TestCase):
         assetPath = AlgoLib.gbm_monte_carlo(s0, sigma, mu, nPer, nTDays, nSim)
         self.assertEqual(np.size(assetPath, axis=0), nSim)
         self.assertEqual(np.size(assetPath, axis=1), nPer+1)
+        
+    #Test KMV Model
+    def test_kmv_edf(self):
+        enterprise_value = 1000
+        short_term_debt = 1500
+        long_term_debt = 1000
+        mu = 0.2
+        sigma = 0.25 
+        period = 1
+        edf = AlgoLib.kmv(enterprise_value, short_term_debt, long_term_debt, mu, sigma, period)
+        self.assertEqual(edf, 0.98202925390105433)
 
 if __name__ == '__main__':
     unittest.main()

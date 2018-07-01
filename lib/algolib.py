@@ -8,6 +8,7 @@ Description: Quantitative and numerical functions
 import numpy as np
 import math
 import numpy.matlib as matlib
+from scipy.stats import norm
 
 class AlgoLib():
     
@@ -55,9 +56,27 @@ class AlgoLib():
                                   
         return (asset_path)
 
-
-
-
-
+    @staticmethod
+    def kmv(ev, stDebt, ltDebt, mu, sigma, period = 1):
+        
+        """
+            KMV model is based on the structural approach to calculate EDF (Expected Default Frequency)
+            #ev = enterprise value
+            #stDebt = short term debt
+            #ltDebt = long term debt
+            #mu = expected growth after 1 year
+            #sigma = annualized volatility 
+            #period = period in years
+        """
+         #Calcualte default point
+        default_point = stDebt + (0.5 * ltDebt)
+         
+         
+        numer = math.log(ev/default_point) + (mu - math.pow(sigma, 2)/2) * period
+        denom = sigma * period
+        stdDev = numer/denom                 
+        edf = norm.cdf(-stdDev)
+        
+        return edf
 
 
