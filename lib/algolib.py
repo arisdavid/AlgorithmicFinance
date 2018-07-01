@@ -9,7 +9,6 @@ import numpy as np
 import math
 import numpy.matlib as matlib
 from scipy.stats import norm
-
 class AlgoLib():
     
     
@@ -76,7 +75,6 @@ class AlgoLib():
         denom = sigma * period
         stdDev = numer/denom                 
         edf = norm.cdf(-stdDev)
-        
         return edf
 
 

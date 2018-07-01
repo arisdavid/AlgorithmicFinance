@@ -27,13 +27,13 @@ class TestAlgoLib(unittest.TestCase):
     #Test KMV Model
     def test_kmv_edf(self):
         enterprise_value = 1000
-        short_term_debt = 1500
-        long_term_debt = 1000
+        short_term_debt = 400
+        long_term_debt = 400
         mu = 0.2
         sigma = 0.25 
         period = 1
         edf = AlgoLib.kmv(enterprise_value, short_term_debt, long_term_debt, mu, sigma, period)
-        self.assertEqual(edf, 0.98202925390105433)
+        self.assertEqual(edf, 0.0032808908834941666)
 
 if __name__ == '__main__':
     unittest.main()
